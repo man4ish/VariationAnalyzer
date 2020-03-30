@@ -62,7 +62,7 @@ parameters :
 
     variation_object_name :
         ui-name: |
-            Output name for variation object
+            Output name for reference to reads
         short-hint : |
             Name for the variation object returned from the application.
 
