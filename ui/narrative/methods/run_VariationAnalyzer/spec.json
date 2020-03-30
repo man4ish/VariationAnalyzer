@@ -1,0 +1,153 @@
+{
+    "ver": "0.0.1",
+    "authors": [
+        "jmc"
+    ],
+    "contact": "http://kbase.us/contact-us/",
+    "categories": ["active","communities"],
+    "widgets": {
+        "input": null,
+        "output": "no-display"
+    },
+    "parameters": [ 
+        {
+            "id": "assembly_ref",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "" ],
+            "field_type": "text",
+            "text_options": {
+                "valid_ws_types": [ "KBaseGenomeAnnotations.Assembly"]
+            }
+        },
+        {
+            "id": "reads_ref",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "" ],
+            "field_type": "text",
+            "text_options": {
+                "valid_ws_types": [ "KBaseFile.PairedEndLibrary", "KBaseFile.SingleEndLibrary", "KBaseAssembly.PairedEndLibrary", "KBaseAssembly.SingleEndLibrary" ]
+            }
+        },
+        {
+            "id": "map_qual",
+            "optional": false,
+            "advanced": true,
+            "allow_multiple": false,
+            "default_values": [ "60" ],
+            "field_type": "text",
+            "text_options": {
+                "validate_as": "int",
+                "min_integer" : 0
+            }
+        },
+        {
+            "id": "base_qual",
+            "optional": false,
+            "advanced": true,
+            "allow_multiple": false,
+            "default_values": [ "13" ],
+            "field_type": "text",
+            "text_options": {
+                "validate_as": "int",
+                "min_integer" : 0
+            }
+        },
+        {
+            "id": "min_cov",
+            "optional": false,
+            "advanced": true,
+            "allow_multiple": false,
+            "default_values": [ "10" ],
+            "field_type": "text",
+            "text_options": {
+                "validate_as": "int",
+                "min_integer" : 0
+            }
+        },
+        {
+            "id": "min_qual",
+            "optional": false,
+            "advanced": true,
+            "allow_multiple": false,
+            "default_values": [ "100" ],
+            "field_type": "text",
+            "text_options": {
+                "validate_as": "int",
+                "min_integer" : 0
+            }
+        },
+        {
+            "id": "variation_object_name",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "" ],
+            "field_type": "text",
+            "text_options": {
+                "valid_ws_types" : [ "KBaseGwasData.GwasVariations" ],
+                "is_output_name" : true
+            }
+        }
+    ],
+    "behavior": {
+        "service-mapping": {
+            "url": "",
+            "name": "VariationAnalyzer",
+            "method": "run_VariationAnalyzer",
+            "input_mapping": [
+                {
+                    "narrative_system_variable": "workspace",
+                    "target_property": "workspace_name"
+                },{
+                    "narrative_system_variable": "workspace_id",
+                    "target_property": "workspace_id"
+                },{
+                    "input_parameter": "assembly_ref",
+                    "target_property": "assembly_ref",
+                    "target_type_transform": "resolved-ref"
+                },{
+                    "input_parameter": "reads_ref",
+                    "target_property": "reads_ref",
+                    "target_type_transform": "resolved-ref"
+                },
+                {
+                    "input_parameter": "map_qual",
+                    "target_property": "map_qual"
+
+                },
+                {
+                    "input_parameter": "base_qual",
+                    "target_property": "base_qual"
+
+                },
+                {
+                    "input_parameter": "min_cov",
+                    "target_property": "min_cov"
+
+                },
+                {
+                  "input_parameter": "min_qual",
+                  "target_property": "min_qual"
+                }
+            ],
+            "output_mapping": [
+                {
+                    "service_method_output_path": [0,"report_name"],
+                    "target_property": "report_name"
+                },{
+                    "service_method_output_path": [0,"report_ref"],
+                    "target_property": "report_ref"
+                },
+                {
+                    "narrative_system_variable": "workspace",
+                    "target_property": "workspace_name"
+                }
+            ]
+        }
+    },
+    "job_id_output_field": "docker"
+}
