@@ -12,7 +12,7 @@
     },
     "parameters": [ 
         {
-            "id": "assembly_ref",
+            "id": "genome_ref",
             "optional": false,
             "advanced": false,
             "allow_multiple": false,
@@ -107,8 +107,8 @@
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
                 },{
-                    "input_parameter": "assembly_ref",
-                    "target_property": "assembly_ref",
+                    "input_parameter": "genome_ref",
+                    "target_property": "genome_ref",
                     "target_type_transform": "resolved-ref"
                 },{
                     "input_parameter": "fastq_ref",

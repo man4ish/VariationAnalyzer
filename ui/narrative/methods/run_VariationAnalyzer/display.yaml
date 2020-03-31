@@ -24,11 +24,12 @@ suggestions:
 # Configure the display and description of parameters
 #
 parameters :
-    assembly_ref :
+    genome_ref :
         ui-name : |
             Reference assembly
         short-hint : |
             The reference assembly for which variants will be called.
+
 
     fastq_ref :
         ui-name : |
