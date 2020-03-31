@@ -46,5 +46,5 @@ class DownloadFastqUtils:
         return file
 
     def deinterleave(self, fastq_file):
-        print("sh /kb/modue/data/interleave.sh > "+ fastq_file + " /kb/module/work/tmp/f.fastq  /kb/module/work/tmp/r.fastq")
-        #os.system("sh /kb/modue/data/interleave.sh > "+ fastq_file + " /kb/module/work/tmp/f.fastq  /kb/module/work/tmp/r.fastq")
+        print("bash /kb/module/data/deinterleave.sh > "+ fastq_file + " /kb/module/work/tmp/f.fastq  /kb/module/work/tmp/r.fastq")
+        os.system("bash /kb/module/data/deinterleave.sh > "+ fastq_file + " /kb/module/work/tmp/f.fastq  /kb/module/work/tmp/r.fastq")

@@ -30,7 +30,7 @@ parameters :
         short-hint : |
             The reference assembly for which variants will be called.
 
-    reads_ref :
+    fastq_ref :
         ui-name : |
             Reads
         short-hint : |
