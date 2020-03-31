@@ -3,6 +3,7 @@
 import logging
 import os
 from VariationAnalyzer.Utils.DownloadFastqUtils import DownloadFastqUtils
+from VariationAnalyzer.Utils.SnippyUtils import SnippyUtils
 from installed_clients.KBaseReportClient import KBaseReport
 
 #END_HEADER
@@ -39,6 +40,7 @@ class VariationAnalyzer:
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
         self.dfu = DownloadFastqUtils()
+        self.su = SnippyUtils()
         #END_CONSTRUCTOR
         pass
 
@@ -59,9 +61,14 @@ class VariationAnalyzer:
         #BEGIN run_VariationAnalyzer
         fastq_file = self.dfu._stage_input_file(params['fastq_ref'], "paired_end")
         #exit(fastq_file['files']['fwd'])
-        geno_assembly = self.dfu.download_genome(params['genome_ref'])
+        genome_assembly = self.dfu.download_genome(params['genome_ref'])
         #exit(geno_assembly['path'])
-        self.dfu.deinterleave(fastq_file['files']['fwd'])
+
+        snippy_output = "/kb/module/work/tmp/snippy_output"
+        cmd = self.su.get_snippy_command(genome_assembly['path'], snippy_output)
+        exit(cmd)
+        self.su.run_snippy_command(cmd)
+        #self.su.deinterleave(fastq_file['files']['fwd'])
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
                                                 'text_message': params['fastq_ref']},
