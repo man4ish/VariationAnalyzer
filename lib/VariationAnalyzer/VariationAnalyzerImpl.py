@@ -2,7 +2,7 @@
 #BEGIN_HEADER
 import logging
 import os
-
+from VariationAnalyzer.Utils.DownloadFastqUtils import DownloadFastqUtils
 from installed_clients.KBaseReportClient import KBaseReport
 #END_HEADER
 
@@ -37,6 +37,7 @@ class VariationAnalyzer:
         self.shared_folder = config['scratch']
         logging.basicConfig(format='%(created)s %(levelname)s: %(message)s',
                             level=logging.INFO)
+        self.dfu = DownloadFastqUtils()
         #END_CONSTRUCTOR
         pass
 
@@ -55,9 +56,10 @@ class VariationAnalyzer:
         # ctx is the context object
         # return variables are: output
         #BEGIN run_VariationAnalyzer
+        self.dfu._stage_input_file(params['fastq_ref'], "paired_end")
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
-                                                'text_message': params['parameter_1']},
+                                                'text_message': params['fastq_ref']},
                                                 'workspace_name': params['workspace_name']})
         output = {
             'report_name': report_info['name'],

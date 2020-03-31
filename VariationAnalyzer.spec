@@ -15,7 +15,8 @@ module VariationAnalyzer {
         int map_qual;
         int base_qual;
         int min_cov;
-        int min_qual;        
+        int min_qual;     
+        string genome_ref;   
     } InputParams;
 
     /*

@@ -63,5 +63,5 @@ class VariationAnalyzerTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
-        ret = self.serviceImpl.run_VariationAnalyzer(self.ctx, {'workspace_name': self.wsName,
-                                                             'parameter_1': 'Hello World!'})
+        ret = self.serviceImpl.run_VariationAnalyzer(self.ctx, {'workspace_name': 'man4ish_gupta:narrative_1585669223193',
+            'fastq_ref':'39768/2/1', 'genome_ref':'39768/4/1'})
