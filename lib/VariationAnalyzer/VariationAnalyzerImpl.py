@@ -4,6 +4,7 @@ import logging
 import os
 from VariationAnalyzer.Utils.DownloadFastqUtils import DownloadFastqUtils
 from installed_clients.KBaseReportClient import KBaseReport
+
 #END_HEADER
 
 
@@ -56,7 +57,11 @@ class VariationAnalyzer:
         # ctx is the context object
         # return variables are: output
         #BEGIN run_VariationAnalyzer
-        self.dfu._stage_input_file(params['fastq_ref'], "paired_end")
+        fastq_file = self.dfu._stage_input_file(params['fastq_ref'], "paired_end")
+        #exit(fastq_file['files']['fwd'])
+        geno_assembly = self.dfu.download_genome(params['genome_ref'])
+        #exit(geno_assembly['path'])
+        self.dfu.deinterleave(fastq_file['files']['fwd'])
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
                                                 'text_message': params['fastq_ref']},

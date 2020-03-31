@@ -4,13 +4,14 @@ import subprocess
 from pprint import pprint,pformat
 
 from installed_clients.ReadsUtilsClient import ReadsUtils
-
+from installed_clients.AssemblyUtilClient import AssemblyUtil
 
 
 class DownloadFastqUtils:
 
     def __init__(self):
        self.callbackURL = os.environ['SDK_CALLBACK_URL']
+       self.au = AssemblyUtil(self.callbackURL)
        pass 
 
 
@@ -35,6 +36,15 @@ class DownloadFastqUtils:
         interleaved = False
         if input_file_info['files']['type'] == 'interleaved':
             interleaved = True
-
+       
         return input_file_info
 
+    def download_genome(self, genomeref):
+        file = self.au.get_assembly_as_fasta({
+          'ref': genomeref
+        })
+        return file
+
+    def deinterleave(self, fastq_file):
+        print("sh /kb/modue/data/interleave.sh > "+ fastq_file + " /kb/module/work/tmp/f.fastq  /kb/module/work/tmp/r.fastq")
+        #os.system("sh /kb/modue/data/interleave.sh > "+ fastq_file + " /kb/module/work/tmp/f.fastq  /kb/module/work/tmp/r.fastq")
