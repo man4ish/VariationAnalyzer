@@ -60,15 +60,14 @@ class VariationAnalyzer:
         # return variables are: output
         #BEGIN run_VariationAnalyzer
         fastq_file = self.dfu._stage_input_file(params['fastq_ref'], "paired_end")
-        #exit(fastq_file['files']['fwd'])
         genome_assembly = self.dfu.download_genome(params['genome_ref'])
-        #exit(geno_assembly['path'])
+
+        #self.su.deinterleave(fastq_file['files']['fwd']) 
 
         snippy_output = "/kb/module/work/tmp/snippy_output"
-        cmd = self.su.get_snippy_command(genome_assembly['path'], snippy_output)
+        cmd = self.su.build_snippy_command(genome_assembly['path'], snippy_output)
         exit(cmd)
         self.su.run_snippy_command(cmd)
-        #self.su.deinterleave(fastq_file['files']['fwd'])
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
                                                 'text_message': params['fastq_ref']},

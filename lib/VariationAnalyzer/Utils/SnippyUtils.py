@@ -9,14 +9,14 @@ class SnippyUtils:
        self.callbackURL = os.environ['SDK_CALLBACK_URL']
        pass 
 
-    def get_snippy_command(self, genome_file, output_dir):
+    def build_snippy_command(self, genome_file, output_dir):
         outpath = "/kb/module/work/tmp/"
-        command = "/kb/module/data/snippy/bin/snippy --outdir "+ output_dir +" --ref "+ genome_file + " --R1 "+ outpath + "R1.fq --R2 " + outpath + " R2.fq" 
+        command = "/kb/module/deps/snippy/bin/snippy --outdir "+ output_dir +" --ref "+ genome_file + " --R1 "+ outpath + "f.fastq --R2 " + outpath + "r.fastq" 
         return command
 
     def run_snippy_command(self, command):
         os.system(command)
 
     def deinterleave(self, fastq_file):
-        #print("bash /kb/module/data/deinterleave.sh > "+ fastq_file + " /kb/module/work/tmp/f.fastq  /kb/module/work/tmp/r.fastq")
-        os.system("bash /kb/module/data/deinterleave.sh > "+ fastq_file + " /kb/module/work/tmp/f.fastq  /kb/module/work/tmp/r.fastq")
+        print("bash /kb/module/deps/deinterleave.sh > "+ fastq_file + " /kb/module/work/tmp/f.fastq  /kb/module/work/tmp/r.fastq")
+        os.system("bash /kb/module/deps/deinterleave.sh > "+ fastq_file + " /kb/module/work/tmp/f.fastq  /kb/module/work/tmp/r.fastq")
