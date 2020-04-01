@@ -62,11 +62,11 @@ class VariationAnalyzer:
         fastq_file = self.dfu._stage_input_file(params['fastq_ref'], "paired_end")
         genome_assembly = self.dfu.download_genome(params['genome_ref'])
 
-        #self.su.deinterleave(fastq_file['files']['fwd']) 
+        self.su.deinterleave(fastq_file['files']['fwd']) 
 
         snippy_output = "/kb/module/work/tmp/snippy_output"
         cmd = self.su.build_snippy_command(genome_assembly['path'], snippy_output)
-        exit(cmd)
+        #exit(cmd)
         self.su.run_snippy_command(cmd)
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
