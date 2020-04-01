@@ -24,7 +24,7 @@ suggestions:
 # Configure the display and description of parameters
 #
 parameters :
-    genome_ref :
+    genome_or_assembly_ref :
         ui-name : |
             Reference assembly
         short-hint : |

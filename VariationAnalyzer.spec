@@ -9,14 +9,14 @@ module VariationAnalyzer {
     } ReportResults;
 
     typedef structure{
-        string obj_name;
+        string variation_object_name;
         string workspace_name; 
         string fastq_ref;
         int map_qual;
         int base_qual;
         int min_cov;
         int min_qual;     
-        string genome_ref;   
+        string genome_or_assembly_ref;   
     } InputParams;
 
     /*

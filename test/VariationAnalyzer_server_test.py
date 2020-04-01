@@ -63,5 +63,12 @@ class VariationAnalyzerTest(unittest.TestCase):
         #
         # Check returned data with
         # self.assertEqual(ret[...], ...) or other unittest methods
-        ret = self.serviceImpl.run_VariationAnalyzer(self.ctx, {'workspace_name': 'man4ish_gupta:narrative_1585669223193',
-            'fastq_ref':'39830/22/1', 'genome_ref':'39768/4/1'})
+        ret = self.serviceImpl.run_VariationAnalyzer(self.ctx, 
+                {
+                   'workspace_name': 'man4ish_gupta:narrative_1585669223193',
+                   'fastq_ref':'39830/22/1', 
+                   'genome_or_assembly_ref':'39768/4/1', 
+                   'variation_object_name': 'corona_vcf', 
+                   'vcf_staging_file_path': '/kb/module/work/tmp/snippy_output/snps.vcf'
+                 }
+        )

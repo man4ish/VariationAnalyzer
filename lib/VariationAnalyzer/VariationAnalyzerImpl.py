@@ -5,7 +5,7 @@ import os
 from VariationAnalyzer.Utils.DownloadFastqUtils import DownloadFastqUtils
 from VariationAnalyzer.Utils.SnippyUtils import SnippyUtils
 from installed_clients.KBaseReportClient import KBaseReport
-
+from installed_clients.VariationUtilClient import VariationUtil
 #END_HEADER
 
 
@@ -41,6 +41,7 @@ class VariationAnalyzer:
                             level=logging.INFO)
         self.dfu = DownloadFastqUtils()
         self.su = SnippyUtils()
+        self.vu = VariationUtil(self.callback_url)
         #END_CONSTRUCTOR
         pass
 
@@ -60,7 +61,7 @@ class VariationAnalyzer:
         # return variables are: output
         #BEGIN run_VariationAnalyzer
         fastq_file = self.dfu._stage_input_file(params['fastq_ref'], "paired_end")
-        genome_assembly = self.dfu.download_genome(params['genome_ref'])
+        genome_assembly = self.dfu.download_genome(params['genome_or_assembly_ref'])
 
         self.su.deinterleave(fastq_file['files']['fwd']) 
 
@@ -68,6 +69,8 @@ class VariationAnalyzer:
         cmd = self.su.build_snippy_command(genome_assembly['path'], snippy_output)
         #exit(cmd)
         self.su.run_snippy_command(cmd)
+        #exit(params)
+        self.vu.save_variation_from_vcf(ctx, params)   #here getting unexpected error 
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
                                                 'text_message': params['fastq_ref']},
