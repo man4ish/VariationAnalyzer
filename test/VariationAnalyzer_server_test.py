@@ -69,6 +69,7 @@ class VariationAnalyzerTest(unittest.TestCase):
                    'fastq_ref':'39830/22/1', 
                    'genome_or_assembly_ref':'39768/4/1', 
                    'variation_object_name': 'corona_vcf', 
-                   'vcf_staging_file_path': '/kb/module/work/tmp/snippy_output/snps.vcf'
+                   'vcf_staging_file_path': '/kb/module/work/tmp/snippy_output/snps.vcf',
+                   'sample_attribute_ref': '39830/35/1'
                  }
         )

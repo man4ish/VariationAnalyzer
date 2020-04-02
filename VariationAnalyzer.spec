@@ -16,7 +16,8 @@ module VariationAnalyzer {
         int base_qual;
         int min_cov;
         int min_qual;     
-        string genome_or_assembly_ref;   
+        string genome_or_assembly_ref;  
+        string sample_attribute_ref; 
     } InputParams;
 
     /*

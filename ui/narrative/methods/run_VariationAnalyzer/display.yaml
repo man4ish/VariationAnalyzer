@@ -67,6 +67,13 @@ parameters :
         short-hint : |
             Name for the variation object returned from the application.
 
+    sample_attribute_ref :
+        ui-name : |
+            Sample attribute reference
+        short-hint : |
+            sample meta-data object.
+
+
 description : |
     <p>This method uses snippy to call variants in a reference assembly.  It will first map short reads to this assembly.
 

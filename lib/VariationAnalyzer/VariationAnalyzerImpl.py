@@ -60,6 +60,7 @@ class VariationAnalyzer:
         # ctx is the context object
         # return variables are: output
         #BEGIN run_VariationAnalyzer
+        
         fastq_file = self.dfu._stage_input_file(params['fastq_ref'], "paired_end")
         genome_assembly = self.dfu.download_genome(params['genome_or_assembly_ref'])
 
@@ -70,7 +71,8 @@ class VariationAnalyzer:
         #exit(cmd)
         self.su.run_snippy_command(cmd)
         #exit(params)
-        self.vu.save_variation_from_vcf(ctx, params)   #here getting unexpected error 
+        
+        self.vu.save_variation_from_vcf(params)   #here getting unexpected error 
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
                                                 'text_message': params['fastq_ref']},

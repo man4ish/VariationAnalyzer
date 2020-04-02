@@ -92,7 +92,19 @@
                 "valid_ws_types" : [ "KBaseGwasData.GwasVariations" ],
                 "is_output_name" : true
             }
+        },
+	{
+            "id": "sample_attribute_ref",
+            "optional": false,
+            "advanced": false,
+            "allow_multiple": false,
+            "default_values": [ "" ],
+            "field_type": "text",
+            "text_options": {
+                "valid_ws_types": [ "KBaseExperiments.AttributeMapping" ]
+            }
         }
+
     ],
     "behavior": {
         "service-mapping": {
@@ -133,6 +145,11 @@
                 {
                   "input_parameter": "min_qual",
                   "target_property": "min_qual"
+                },
+		{
+                    "input_parameter": "sample_attribute_ref",
+                    "target_property": "sample_attribute_ref",
+                    "target_type_transform": "resolved-ref"
                 }
             ],
             "output_mapping": [
