@@ -66,12 +66,12 @@ class VariationAnalyzer:
 
         self.su.deinterleave(fastq_file['files']['fwd']) 
 
-        snippy_output = "/kb/module/work/tmp/snippy_output"
+        snippy_output = "/kb/module/work/tmp/snippy_output"  #hardcoded for testing
         cmd = self.su.build_snippy_command(genome_assembly['path'], snippy_output)
         #exit(cmd)
         self.su.run_snippy_command(cmd)
         #exit(params)
-        
+        params['vcf_staging_file_path'] = '/kb/module/work/tmp/snippy_output/snps.vcf' 
         self.vu.save_variation_from_vcf(params)   #here getting unexpected error 
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
