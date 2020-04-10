@@ -7,7 +7,17 @@ class SnippyUtils:
 
     def __init__(self):
        self.callbackURL = os.environ['SDK_CALLBACK_URL']
-       pass 
+       pass
+
+    def validate_params(self, params):
+            if 'fastq_ref' not in params:
+                raise ValueError('required fastq_ref field was not defined')
+            elif 'genome_or_assembly_ref' not in params:
+                raise ValueError('required genome_or_assembly_ref field was not defined')
+            elif 'variation_object_name' not in params:
+                raise ValueError('required variation_object_name field was not defined')
+            elif 'sample_attribute_ref' not in params:
+                raise ValueError('required sample_attribute_ref field was not defined')
 
     def build_snippy_command(self, genome_file, output_dir, outpath):
         command = "/kb/module/deps/snippy/bin/snippy --outdir "+ output_dir +" --ref "+ genome_file + " --R1 "+ outpath + "/fwd.fastq --R2 " + outpath + "/rev.fastq"

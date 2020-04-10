@@ -61,6 +61,8 @@ class VariationAnalyzer:
         # return variables are: output
         #BEGIN run_VariationAnalyzer
 
+        self.su.validate_params(params)
+
         logging.info("Downloading Fastq File")
         fastq_file = self.dfu._stage_input_file(params['fastq_ref'], "paired_end")
 
@@ -70,7 +72,7 @@ class VariationAnalyzer:
         self.su.deinterleave(fastq_file['files']['fwd'], self.shared_folder)
 
         sample_name = "snippy_output"  #hardcoded to match with attribute mapping file
-        #sample_name = (fastq_file['files']['fwd']).replace(".inter.fastq", "")
+
         snippy_output = self.shared_folder + "/" + sample_name
 
         cmd = self.su.build_snippy_command(genome_assembly['path'], snippy_output, self.shared_folder)
