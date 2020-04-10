@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7db9197f-688b-4a80-9de2-8e66d34f3ea3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/VariationAnalyzer/Utils/SnippyUtils.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/VariationAnalyzer/Utils/SnippyUtils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/VariationAnalyzer/VariationAnalyzerImpl.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/VariationAnalyzer/VariationAnalyzerImpl.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/narrative/methods/run_VariationAnalyzer/spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/ui/narrative/methods/run_VariationAnalyzer/spec.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,10 +41,10 @@
       <screen x="67" y="27" width="1853" height="1052" />
     </state>
     <state x="455" y="206" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1052@67.27.1853.1052" timestamp="1586536321809" />
-    <state x="779" y="306" width="424" height="492" key="FileChooserDialogImpl" timestamp="1586536291543">
+    <state x="779" y="298" width="424" height="492" key="FileChooserDialogImpl" timestamp="1586548023933">
       <screen x="67" y="27" width="1853" height="1052" />
     </state>
-    <state x="779" y="306" width="424" height="492" key="FileChooserDialogImpl/67.27.1853.1052@67.27.1853.1052" timestamp="1586536291543" />
+    <state x="779" y="298" width="424" height="492" key="FileChooserDialogImpl/67.27.1853.1052@67.27.1853.1052" timestamp="1586548023933" />
     <state x="775" y="198" width="432" height="708" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1586537198927">
       <screen x="67" y="27" width="1853" height="1052" />
     </state>
