@@ -60,19 +60,27 @@ class VariationAnalyzer:
         # ctx is the context object
         # return variables are: output
         #BEGIN run_VariationAnalyzer
-        
+
+        logging.info("Downloading Fastq File")
         fastq_file = self.dfu._stage_input_file(params['fastq_ref'], "paired_end")
+
+        logging.info("Downloading assembly file")
         genome_assembly = self.dfu.download_genome(params['genome_or_assembly_ref'])
 
-        self.su.deinterleave(fastq_file['files']['fwd']) 
+        self.su.deinterleave(fastq_file['files']['fwd'], self.shared_folder)
 
-        snippy_output = "/kb/module/work/tmp/snippy_output"  #hardcoded for testing
-        cmd = self.su.build_snippy_command(genome_assembly['path'], snippy_output)
-        #exit(cmd)
+        sample_name = "snippy_output"  #hardcoded to match with attribute mapping file
+        #sample_name = (fastq_file['files']['fwd']).replace(".inter.fastq", "")
+        snippy_output = self.shared_folder + "/" + sample_name
+
+        cmd = self.su.build_snippy_command(genome_assembly['path'], snippy_output, self.shared_folder)
+
         self.su.run_snippy_command(cmd)
-        #exit(params)
-        params['vcf_staging_file_path'] = '/kb/module/work/tmp/snippy_output/snps.vcf' 
-        self.vu.save_variation_from_vcf(params)   #here getting unexpected error 
+
+        params['vcf_staging_file_path'] = self.shared_folder + "/" + sample_name + "/snps.vcf"
+
+        self.vu.save_variation_from_vcf(params)
+
         report = KBaseReport(self.callback_url)
         report_info = report.create({'report': {'objects_created':[],
                                                 'text_message': params['fastq_ref']},
